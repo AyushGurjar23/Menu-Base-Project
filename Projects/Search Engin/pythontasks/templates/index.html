@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search App</title>
+</head>
+<body>
+    <h1>Search App</h1>
+    <form id="searchForm">
+        <input type="text" id="query" name="query" placeholder="Enter search query">
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.getElementById('query').value;
+            fetch(`/search?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    let resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = '';  // Clear previous results
+
+                    if (data.error) {
+                        resultsDiv.innerHTML = '<p>No results found</p>';
+                    } else {
+                        data.forEach(result => {
+                            let resultItem = document.createElement('div');
+                            resultItem.innerHTML = `<h3><a href="${result.link}">${result.title}</a></h3>
+                                                    <p>${result.snippet}</p>`;
+                            resultsDiv.appendChild(resultItem);
+                        });
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

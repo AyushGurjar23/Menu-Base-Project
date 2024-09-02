@@ -1,0 +1,18 @@
+{
+    "name": "voice-chatgpt-backend",
+    "version": "1.0.0",
+    "description": "A backend server for a voice-based ChatGPT-like application.",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+    "express": "4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.19.0"
+},
+
+    "author": "Ayush Gurjar",
+    "license": "MIT"
+  }
+  
